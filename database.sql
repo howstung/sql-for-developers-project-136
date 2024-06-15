@@ -133,3 +133,27 @@ CREATE TABLE exercises
     created_at DATE,
     updated_at DATE
 );
+
+-- Step 5
+
+CREATE TABLE discussions
+(
+    id         BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    lesson_id  BIGINT REFERENCES lessons (id),
+    body       JSON,
+    created_at DATE,
+    updated_at DATE
+);
+
+CREATE TYPE ARTICLE_STATUS AS ENUM ('created', 'in moderation', 'published', 'archived');
+
+CREATE TABLE blog
+(
+    id         BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id    BIGINT REFERENCES users (id),
+    title      VARCHAR(255),
+    body       TEXT,
+    status     ARTICLE_STATUS,
+    created_at DATE,
+    updated_at DATE
+);
