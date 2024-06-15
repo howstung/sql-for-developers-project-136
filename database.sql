@@ -112,26 +112,24 @@ CREATE TABLE program_completions
     updated_at             DATE
 );
 
+-- Step 4
 
+CREATE TABLE quizzes
+(
+    id         BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    lesson_id  BIGINT REFERENCES lessons (id),
+    name       VARCHAR(255),
+    body       JSON,
+    created_at DATE,
+    updated_at DATE
+);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CREATE TABLE exercises
+(
+    id         BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    lesson_id  BIGINT REFERENCES lessons (id),
+    name       VARCHAR(255),
+    url        VARCHAR(255),
+    created_at DATE,
+    updated_at DATE
+);
