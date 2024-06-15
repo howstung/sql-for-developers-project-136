@@ -46,4 +46,24 @@ CREATE TABLE modules_courses
     id        BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     module_id BIGINT REFERENCES modules (id),
     course_id BIGINT REFERENCES courses (id)
-)
+);
+
+CREATE TABLE teaching_groups
+(
+    id         BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    slug       VARCHAR(255),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE users
+(
+    id                BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name              VARCHAR(255),
+    email             VARCHAR(255),
+    password_hash     VARCHAR(255),
+    teaching_group_id BIGINT REFERENCES teaching_groups (id),
+    role              VARCHAR(100),
+    created_at        TIMESTAMP,
+    updated_at        TIMESTAMP
+);
